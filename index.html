@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Destructor de corazones</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="container">
+      <canvas id="canvas" width="800" height="600">
+        Descargue Chrome para utilizar el Demo!.
+      </canvas>
+      <span id="score">Marcador: <span id="count"> 0 </span></span>
+      <p id="title" class="strong screen">Destructor</p>
+      <p id="start" class="screen"> Presione <span class="strong">X</span> para iniciar.</p>
+      <p id="end" class="screen hide"> <span class="strong">Juego Terminado</span>
+      </p>
+      <p id="ctrls"> Mover: Teclas de Flechas ! Disparar: Mantenga presionada X</p>
+    </div>
+    <!--Color de Fragmentos -->
+    <script id="shader-fragment" type="x-shader/x-fragment">
+      varying lowp vec4 vColor;
+
+      void main(void) {
+        gl_FragColor = vColor;
+      }
+    </script>
+
+    <!--Posicion de vertice y figura -->
+    <script id="shader-vertex" type="x-shader/x-vertex">
+      attribute vec3 aVertexPosition;
+      attribute vec4 aVertexColor;
+
+      uniform mat4 uMVMatrix;
+      uniform mat4 uPMatrix;
+
+      varying lowp vec4 vColor;
+
+      void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+      }
+    </script>
+    
+    <!-- Cargado de scripts -->
+    <script type="text/javascript" src="js/engine/assets/sylvester.js"></script>
+    <script type="text/javascript" src="js/engine/assets/webgl_util.js"></script>
+    <script type="text/javascript" src="js/engine/assets/animacion.js"></script>
+    <script type="text/javascript" src="js/engine/assets/clases.js"></script>
+    <script type="text/javascript" src="js/engine/core.js"></script>
+    <script type="text/javascript" src="js/engine/juego.js"></script>
+    <script type="text/javascript" src="js/engine/template.js"></script>
+    <script type="text/javascript" src="js/ejecutar.js"></script>
+  </body>
+</html>
