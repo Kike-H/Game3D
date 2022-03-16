@@ -278,6 +278,7 @@ gd.core = {
         gd.gl.uniformMatrix4fv(pUniform, false, new Float32Array(this.perspectiveMatrix.flatten()));
         
         var mvUniform = gd.gl.getUniformLocation(this.sombreado.program, "uMVMatrix");
+        // Correccion gd.gl.uniformMatrix4fv(uniform, flase, new Float332Array(mvMatrix.flatten()));
         gd.gl.uniformMatrix4fv(mvUniform, false, new Float32Array(mvMatrix.flatten()));
     },
     
@@ -301,9 +302,10 @@ gd.core = {
         return mvMatrix;
     },
     
-    mvRotate: function(angulo, v) { 
+    mvRotate: function(angulo, v) { // Correccion mvRolate: function(angulo, v){
         var inRadians = angulo * Math.PI / 180.0;
         
+        // Correcion var m = Matrix.Rotation(inRadians, $V([v], v[1], v[2])).ensure4x4(); 
         var m = Matrix.Rotation(inRadians, $V([v[0], v[1], v[2]])).ensure4x4(); 
         this.multMatrix(m);
     }
